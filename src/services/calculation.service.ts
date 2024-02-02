@@ -4,10 +4,12 @@ import { IPoint } from "../interfaces/point.interface"
 
 class CalculationService {
     getShortestPath(customers: ICustomer[]) {
-        const path: IPoint[] = [{ location: { x: 0, y: 0 } }]
+        const initialPoint: IPoint = { location: { x: 0, y: 0 } }
+
+        const path: IPoint[] = [initialPoint]
         const unvisitedCustomers: IPoint[] = customers.slice().map(el => ({ location: el.location, userId: el.id }))
 
-        while (unvisitedCustomers.length > 1) {
+        while (unvisitedCustomers.length > 0) {
             const lastPoint = path[path.length - 1]
             let nearestPoint!: IPoint
             let shortestDistance: number = Infinity
@@ -25,7 +27,7 @@ class CalculationService {
             unvisitedCustomers.splice(unvisitedCustomers.indexOf(nearestPoint), 1)
         }
 
-        path.push({ location: { x: 0, y: 0 } })
+        path.push({ ...initialPoint, distanceFromLastPoint: this.mathFormulaToCalcDistance(initialPoint.location, path[path.length - 1].location) })
 
         return path
     }
