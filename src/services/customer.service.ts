@@ -11,15 +11,15 @@ class CustomerService {
     }
     async createCustomer(dto: ICustomer) {
         return await db.query(`
-        INSERT INTO customers (name, email, phone, location)
-        VALUES ('${dto.name}', '${dto.email}', '${dto.phone}','${dto.location}')
+            INSERT INTO customers (name, email, phone, location)
+            VALUES ('${dto.name}', '${dto.email}', '${dto.phone}','${JSON.stringify(dto.location)}')
         `)
     }
     async updateCustomer(id: string, dto: ICustomer) {
         return await db.query(`
-        UPDATE customers 
-        SET name = '${dto.name}', email = '${dto.email}', phone = '${dto.phone}', location = '${dto.location}')
-        WHERE id = ${id}
+            UPDATE customers 
+            SET name = '${dto.name}', email = '${dto.email}', phone = '${dto.phone}', location = '${JSON.stringify(dto.location)}')
+            WHERE id = ${id}
         `)
     }
     async deleteCustomer(id: string) {
