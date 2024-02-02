@@ -2,7 +2,7 @@ import db from "../config/database"
 import { ICustomer } from "../interfaces/customer.interface"
 
 class CustomerService {
-    async getAllCustomers() {
+    async getAllCustomers(): Promise<ICustomer[]> {
         return (await db.query("SELECT * FROM customers")).rows
     }
 
