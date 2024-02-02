@@ -1,7 +1,9 @@
 import express from "express"
 import { config } from "dotenv"
-import routes from "./routes/index.route"
 config()
+import routes from "./routes/index.route"
+import { initializeDb } from "./config/database"
+initializeDb()
 
 class AppController {
     express: express.Application

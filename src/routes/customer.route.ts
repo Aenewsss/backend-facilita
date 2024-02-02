@@ -2,10 +2,10 @@ import express from "express"
 import customerController from "../controllers/customer.controller"
 const customerRoutes = express.Router()
 
-customerRoutes.get('/', customerController.getUsers)
-customerRoutes.get('/:id', customerController.getUserById)
-customerRoutes.post('/', customerController.createUser)
-customerRoutes.put('/:id', customerController.updateUser)
-customerRoutes.delete('/:id', customerController.deleteUser)
+customerRoutes.get('/', customerController.getCustomers)
+customerRoutes.get('/:id', customerController.getCustomerById)
+customerRoutes.post('/', customerController.createCustomer)
+customerRoutes.put('/:id', customerController.updateCustomer)
+customerRoutes.delete('/:id', customerController.deleteCustomer)
 
 export default customerRoutes
